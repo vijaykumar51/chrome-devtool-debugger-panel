@@ -1,9 +1,9 @@
 let youClickedOn;
 chrome.devtools.panels.create(
-  "Sample Panel",
-  "icon.png",
-  // "panel.html",
+  "RSCore debugger",
+  "vite.svg",
   "tabpanel-ui/dist/index.html",
+  // "panel.html",
   (panel) => {}
 );
 

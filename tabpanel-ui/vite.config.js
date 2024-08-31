@@ -2,10 +2,11 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 
 export default defineConfig({
-  base: "./", // Ensure relative paths are generated
+  base: "./",
   build: {
-    outDir: "dist", // Output directory relative to the root
+    outDir: "dist",
     emptyOutDir: true,
+    sourcemap: true, // Enable source maps
     rollupOptions: {
       input: "index.html",
     },
