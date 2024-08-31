@@ -2,7 +2,8 @@ let youClickedOn;
 chrome.devtools.panels.create(
   "Sample Panel",
   "icon.png",
-  "panel.html",
+  // "panel.html",
+  "tabpanel-ui/dist/index.html",
   (panel) => {}
 );
 
