@@ -10,7 +10,7 @@ window.addEventListener(
     // Ensure the message has the correct format
     if (event.data && event.data.type === "DEVTOOLS_MESSAGE") {
       console.log("content_script.js: sendMessage");
-      chrome.runtime.sendMessage({ text: event.data.text });
+      chrome.runtime.sendMessage({ payload: event.data.payload });
     }
   },
   false
