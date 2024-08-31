@@ -10,8 +10,5 @@
       "run_at": "document_idle",
       "js": ["content_script.js"]
     }
-  ],
-  "background": {
-    "service_worker": "background.js"
-  }
+  ]
 }
