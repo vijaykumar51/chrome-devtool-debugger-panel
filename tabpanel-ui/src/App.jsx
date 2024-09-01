@@ -1,8 +1,12 @@
 /* eslint-disable no-undef */
 import { useCallback, useEffect, useState } from "react";
 import { styled } from "styled-components";
+
 import "./App.css";
 import Entry from "./components/Entry";
+
+import { mockData } from "./mock/mockData";
+import ActionDetails from "./components/ActionDetails/ActionDetails";
 
 const getKey = () => (Math.random() + 1).toString(36).substring(2);
 
@@ -26,15 +30,7 @@ const StyledAppLayout = styled.div`
     padding: 15px;
   }
 `;
-const mockData = {
-  action: {
-    instantRender: true,
-    type: "forceUpdate",
-    payload: {
-      forceUpdateFeatures: {},
-    },
-  },
-};
+
 const initValue = new Map();
 initValue.set(getKey(), mockData);
 
@@ -47,9 +43,9 @@ function App() {
   const [selectedAction, setSelectedAction] = useState();
 
   useEffect(() => {
-    // eslint-disable-next-line no-undef, no-unused-vars
     if (isWebApp) return;
-    chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+    // eslint-disable-next-line no-unused-vars
+    chrome.runtime.onMessage.addListener((message, _sender, _sendResponse) => {
       console.log(message);
       setList(new Map(list.set(getKey(), message.payload)));
     });
@@ -77,9 +73,11 @@ function App() {
         </div>
       </div>
       <div id="details">
-        <h2>Details</h2>
         {selectedAction && (
-          <div>{JSON.stringify(list.get(selectedAction))}</div>
+          <ActionDetails
+            selectedAction={selectedAction}
+            payload={list.get(selectedAction)}
+          />
         )}
       </div>
     </StyledAppLayout>
