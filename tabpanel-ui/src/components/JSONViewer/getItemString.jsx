@@ -13,9 +13,6 @@ function getShortType(val, diff) {
     return Object.keys(val).length > 0 ? "{…}" : "{}";
   } else if (typeof val === "function") {
     return "fn";
-    // eslint-disable-next-line valid-typeof
-  } else if (typeof val === "") {
-    return `"${val.substr(0, 10) + (val.length > 10 ? "…" : "")}"`;
   } else {
     return val;
   }

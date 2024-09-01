@@ -21,6 +21,9 @@ const StyledAppLayout = styled.div`
 
   #messages {
     border-right: 2px solid #f5f5f5;
+    height: 100%;
+    overflow: auto;
+    padding: 10px;
   }
 
   #actions {
@@ -60,7 +63,14 @@ function App() {
     <StyledAppLayout>
       <div id="messages">
         <h2>Messages</h2>
-        <button onClick={() => setList(new Map())}>Clear messages</button>
+        <button
+          onClick={() => {
+            setList(new Map());
+            setSelectedAction();
+          }}
+        >
+          Clear messages
+        </button>
         <div id="actions">
           {Array.from(list.entries()).map(([key, value]) => (
             <Entry
