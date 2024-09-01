@@ -20,7 +20,7 @@ const StyledAppLayout = styled.div`
   }
 
   #messages {
-    border-right: 2px solid #f5f5f5;
+    border-right: 2px solid #ccc;
     height: 100%;
     overflow: auto;
     padding: 10px;
