@@ -50,7 +50,7 @@ function App() {
     // eslint-disable-next-line no-unused-vars
     chrome.runtime.onMessage.addListener((message, _sender, _sendResponse) => {
       console.log(message);
-      setList(new Map(list.set(getKey(), message.payload)));
+      setList(new Map(list.set(getKey(), structuredClone(message.payload))));
     });
   });
 
@@ -86,7 +86,7 @@ function App() {
         {selectedAction && (
           <ActionDetails
             selectedAction={selectedAction}
-            payload={list.get(selectedAction)}
+            payload={list.get(selectedAction).payload}
           />
         )}
       </div>

@@ -30,7 +30,7 @@ function JSONViewer({ payload }) {
       data={payload}
       theme={theme}
       sortObjectKeys
-      shouldExpandNodeInitially={() => true}
+      shouldExpandNodeInitially={(_1, _2, level) => level < 2}
       getItemString={getItemString}
     />
   );
