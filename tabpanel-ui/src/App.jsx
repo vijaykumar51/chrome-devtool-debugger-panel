@@ -34,15 +34,16 @@ const StyledAppLayout = styled.div`
   }
 `;
 
-const initValue = new Map();
-initValue.set(getKey(), mockData);
+const initValue = mockData;
+
+console.log(initValue);
 
 const isWebApp = !chrome.runtime;
 
 // TODO: set messages to state and create a detail area and better visualization of actions in left pane
 
 function App() {
-  const [list, setList] = useState(isWebApp ? initValue : new Map());
+  const [store] = useState(initValue);
   const [selectedAction, setSelectedAction] = useState();
 
   useEffect(() => {
@@ -59,24 +60,28 @@ function App() {
     setSelectedAction(e);
   }, []);
 
+  console.log(
+    "selectedAction",
+    store?.events?.filter((a) => a.id === selectedAction)
+  );
+
   return (
     <StyledAppLayout>
       <div id="messages">
         <h2>Messages</h2>
         <button
           onClick={() => {
-            setList(new Map());
             setSelectedAction();
           }}
         >
           Clear messages
         </button>
         <div id="actions">
-          {Array.from(list.entries()).map(([key, value]) => (
+          {store?.events?.map(({ id, eventDetails }) => (
             <Entry
-              key={key}
-              uniqueKey={key}
-              payload={value}
+              key={id}
+              uniqueKey={id}
+              eventDetails={eventDetails}
               onClick={(e) => onEntrySelection(e)}
             />
           ))}
@@ -86,7 +91,10 @@ function App() {
         {selectedAction && (
           <ActionDetails
             selectedAction={selectedAction}
-            payload={list.get(selectedAction).payload}
+            payload={
+              store?.events?.find((a) => a.id === selectedAction).eventDetails
+                .details.payload
+            }
           />
         )}
       </div>
