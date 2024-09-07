@@ -212,6 +212,7 @@ const nestedQueue = [];
 const queueBuckedMap = new Map();
 
 const processedEventInfo = [];
+const eventDetailMap = new Map();
 
 const initStateProcessing = () => {
   let currentEventBucket = processedEventInfo;
@@ -234,6 +235,8 @@ const handleEvent = (event, currentEventBucket) => {
 
       nestedQueue.push(id);
       queueBuckedMap.set(id, nestedEventBucket);
+      // TODO: check if we should set the value to invlude nestedEventBucket also or not.
+      eventDetailMap.set(id, event);
       return nestedEventBucket;
     } else if (isNestedLogEnd) {
       nestedQueue.pop();
@@ -247,10 +250,12 @@ const handleEvent = (event, currentEventBucket) => {
       }
     }
   } else {
+    eventDetailMap.set(id, event);
     currentEventBucket.push(event);
   }
 };
 
 initStateProcessing();
-
 console.log(processedEventInfo);
+
+export { processedEventInfo, eventDetailMap };

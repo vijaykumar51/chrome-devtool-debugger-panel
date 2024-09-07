@@ -5,7 +5,7 @@ import { styled } from "styled-components";
 import "./App.css";
 import Entry from "./components/Entry";
 
-import { mockData } from "./mock/mockData";
+import { eventDetailMap, processedEventInfo } from "./mock/mockData";
 import ActionDetails from "./components/ActionDetails/ActionDetails";
 
 const getKey = () => (Math.random() + 1).toString(36).substring(2);
@@ -34,7 +34,7 @@ const StyledAppLayout = styled.div`
   }
 `;
 
-const initValue = mockData;
+const initValue = processedEventInfo;
 
 console.log(initValue);
 
@@ -77,11 +77,10 @@ function App() {
           Clear messages
         </button>
         <div id="actions">
-          {store?.events?.map(({ id, eventDetails }) => (
+          {store?.map((event) => (
             <Entry
-              key={id}
-              uniqueKey={id}
-              eventDetails={eventDetails}
+              key={event.id}
+              eventDetails={event}
               onClick={(e) => onEntrySelection(e)}
             />
           ))}
@@ -91,10 +90,7 @@ function App() {
         {selectedAction && (
           <ActionDetails
             selectedAction={selectedAction}
-            payload={
-              store?.events?.find((a) => a.id === selectedAction).eventDetails
-                .details.payload
-            }
+            payload={eventDetailMap.get(selectedAction).details.payload}
           />
         )}
       </div>

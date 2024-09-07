@@ -1,10 +1,10 @@
 /* eslint-disable react/prop-types */
-function Entry({ uniqueKey, eventDetails, onClick: onClickCb }) {
+function Entry({ eventDetails, onClick: onClickCb }) {
   // console.log(eventDetails);
   const { actionType, actionName } = eventDetails;
   return (
     <button
-      onClick={() => onClickCb(uniqueKey)}
+      onClick={() => onClickCb(eventDetails.id)}
       style={{ backgroundColor: eventDetails.color }}
     >
       {actionType}{" "}
