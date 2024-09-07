@@ -7,7 +7,12 @@ function Entry({ uniqueKey, eventDetails, onClick: onClickCb }) {
       onClick={() => onClickCb(uniqueKey)}
       style={{ backgroundColor: eventDetails.color }}
     >
-      {actionType} {actionName ? `: ${actionName}` : ""}
+      {actionType}{" "}
+      {actionName ? (
+        <span style={{ fontWeight: "bold" }}>{`: ${actionName}`}</span>
+      ) : (
+        ""
+      )}
     </button>
   );
 }

@@ -76,34 +76,34 @@ const getAction = (actionType, actionName, color, indentLevel) => ({
 
 // TODO: check to have another prop "isStandalone" to see if the property is standalone or not. If not, then dispatch another event of same type with "close event"
 
-const action1 = getAction("DISPATCH ACTION", "pagination", "#fe7ab6", 1);
-const action2 = getAction("DISPATCH ACTION", "bootstrap", "#fe7ab6", 1);
+const action1 = getAction("DISPATCH ACTION", "pagination", "#d7658b", 1);
+const action2 = getAction("DISPATCH ACTION", "bootstrap", "#d7658b", 1);
 const action3 = getAction(
   "DISPATCH ACTION",
   "updateStateVersion",
-  "#fe7ab6",
+  "#d7658b",
   1
 );
-const action4 = getAction("DISPATCH ACTION", "forceUpdate", "#fe7ab6", 1);
+const action4 = getAction("DISPATCH ACTION", "forceUpdate", "#d7658b", 1);
 
-const action5 = getAction("EXECUTING ACTION", "pagination", "#92f21d", 1);
+const action5 = getAction("EXECUTING ACTION", "pagination", "#76c68f", 1);
 
-const action6 = getAction("REDUCED STATE", "", "#9d70f8", 2);
-const action7 = getAction("EXECUTING FEATURES", "", "#fc4079", 2);
+const action6 = getAction("REDUCED STATE", "", "#54bebe", 2);
+const action7 = getAction("EXECUTING FEATURES", "", "#54bebe", 2);
 
-const action8 = getAction("EXECUTING FEATURE", "personalization", "#e04337", 3);
-const action9 = getAction("EXECUTING FEATURE", "filter", "#e04337", 3);
-const action10 = getAction("EXECUTING FEATURE", "grouping", "#e04337", 3);
+const action8 = getAction("EXECUTING FEATURE", "personalization", "#e76157", 3);
+const action9 = getAction("EXECUTING FEATURE", "filter", "#e76157", 3);
+const action10 = getAction("EXECUTING FEATURE", "grouping", "#e76157", 3);
 
-const action11 = getAction("EXECUTING ACTION", "bootstrap", "#92f21d", 1);
+const action11 = getAction("EXECUTING ACTION", "bootstrap", "#76c68f", 1);
 
-const action12 = getAction("REDUCED STATE", "", "#9d70f8", 2);
-const action13 = getAction("EXECUTING FEATURES", "", "#fc4079", 2);
+const action12 = getAction("REDUCED STATE", "", "#54bebe", 2);
+const action13 = getAction("EXECUTING FEATURES", "", "#54bebe", 2);
 
 const action14 = getAction(
   "EXECUTING FEATURE",
   "personalization",
-  "#e04337",
+  "#e76157",
   3
 );
 
