@@ -61,13 +61,13 @@ function App() {
     <StyledAppLayout>
       <div id="messages">
         <h2>Messages</h2>
-        <button
+        {/* <button
           onClick={() => {
             setSelectedAction();
           }}
         >
           Clear messages
-        </button>
+        </button> */}
         <div id="actions">
           {store?.map((event) => (
             <Entry

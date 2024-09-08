@@ -1,10 +1,12 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function TabPanel({ data }) {
   const [activeTab, setActiveTab] = useState(data[0]?.tabName);
 
   const activeTabDetails = data.find((d) => d.tabName === activeTab);
+
+  useEffect(() => setActiveTab(data[0]?.tabName), [data]);
 
   console.log({ data });
 
