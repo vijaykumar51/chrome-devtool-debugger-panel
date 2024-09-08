@@ -1,0 +1,13 @@
+.nestedEvent {
+    display: flex;
+    gap: 1rem;
+}
+
+.nestedEvent .indent-indicator{
+    border: 1px solid #fff;
+    width: 0;
+}
+
+.nestedEvent .event-button {
+    flex-grow: 1;
+}

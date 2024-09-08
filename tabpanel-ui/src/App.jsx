@@ -35,12 +35,9 @@ const StyledAppLayout = styled.div`
 `;
 
 const initValue = processedEventInfo;
-
-console.log(initValue);
+console.log({ initValue });
 
 const isWebApp = !chrome.runtime;
-
-// TODO: set messages to state and create a detail area and better visualization of actions in left pane
 
 function App() {
   const [store] = useState(initValue);
@@ -59,11 +56,6 @@ function App() {
     console.log(e);
     setSelectedAction(e);
   }, []);
-
-  console.log(
-    "selectedAction",
-    store?.events?.filter((a) => a.id === selectedAction)
-  );
 
   return (
     <StyledAppLayout>
