@@ -13,13 +13,14 @@ function TabPanel({ data }) {
   const tabs = (
     <div className="tabHeader">
       {data.map((tab) => (
-        <div
+        <button
           key={tab.tabName}
-          className="tab"
+          className={`tab ${activeTab === tab.tabName ? "activeTab" : ""}`}
           onClick={() => setActiveTab(tab.tabName)}
         >
-          {tab.tabName}
-        </div>
+          {/* TODO: capitalizing first letter. Find better way. */}
+          {tab.tabName.replace(/^./, (str) => str.toUpperCase())}
+        </button>
       ))}
     </div>
   );
