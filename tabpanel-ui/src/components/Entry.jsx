@@ -3,7 +3,6 @@ function Entry({ eventDetails, onClick: onClickCb, indentLevel = 0 }) {
   // console.log(eventDetails);
 
   const { actionType, actionName, nestedEventBucket } = eventDetails;
-  console.log({ actionType, actionName, indentLevel });
   return (
     <>
       <span className={`nestedEvent`}>

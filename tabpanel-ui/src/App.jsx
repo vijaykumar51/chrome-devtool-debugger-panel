@@ -82,7 +82,7 @@ function App() {
         {selectedAction && (
           <ActionDetails
             selectedAction={selectedAction}
-            payload={eventDetailMap.get(selectedAction).details.payload}
+            actionDetails={eventDetailMap.get(selectedAction).details}
           />
         )}
       </div>
