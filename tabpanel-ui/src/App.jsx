@@ -5,10 +5,12 @@ import { styled } from "styled-components";
 import "./App.css";
 import Entry from "./components/Entry";
 
-import { eventDetailMap, processedEventInfo } from "./mock/mockData";
+import {
+  eventDetailMap,
+  processedEventInfo,
+  processEvent,
+} from "./mock/mockData";
 import ActionDetails from "./components/ActionDetails/ActionDetails";
-
-const getKey = () => (Math.random() + 1).toString(36).substring(2);
 
 const StyledAppLayout = styled.div`
   display: flex;
@@ -34,23 +36,25 @@ const StyledAppLayout = styled.div`
   }
 `;
 
-const initValue = processedEventInfo;
-console.log({ initValue });
+const initEventStateValue = processedEventInfo;
+console.log({ initEventStateValue });
 
 const isWebApp = !chrome.runtime;
 
 function App() {
-  const [store] = useState(initValue);
+  const [store, setStore] = useState(initEventStateValue);
   const [selectedAction, setSelectedAction] = useState();
 
   useEffect(() => {
     if (isWebApp) return;
-    // eslint-disable-next-line no-unused-vars
-    chrome.runtime.onMessage.addListener((message, _sender, _sendResponse) => {
-      console.log(message);
-      setList(new Map(list.set(getKey(), structuredClone(message.payload))));
+
+    chrome.runtime.onMessage.addListener((message) => {
+      // console.log(message);
+      const newState = processEvent(message.payload);
+      // console.log(newState);
+      setStore([...newState]);
     });
-  });
+  }, []);
 
   const onEntrySelection = useCallback((e) => {
     console.log(e);

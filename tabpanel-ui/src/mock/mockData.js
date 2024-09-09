@@ -1,58 +1,6 @@
-// export const mockData = {
-//   action: {
-//     instantRender: true,
-//     type: "forceUpdate",
-//     data: [
-//       { a: 1 },
-//       { b: 2 },
-//       { c: 3 },
-//       { a: 1 },
-//       { b: 2 },
-//       { c: 3 },
-//       { a: 1 },
-//       { b: 2 },
-//       { c: 3 },
-//       { a: 1 },
-//       { b: 2 },
-//       { c: 3 },
-//     ],
-//     payload: {
-//       forceUpdateFeatures: {},
-//     },
-//   },
-// };
+/* eslint-disable no-undef */
 
-// const action = {
-//   actionType: "DISPATCH ACTION",
-//   actionInfo: "",
-//   actionName: "pagination",
-//   color: "#342332",
-//   origin: console.trace(),
-//   details: {
-//     payload: {},
-//     diff: { before: {}, after: {} },
-//     otherTabs: [{ tabType: { payload } }],
-//   },
-// };
-
-// const action = {
-//   actionType: "DISPATCH ACTION",
-//   actionInfo: "Action dispatched to the queue",
-//   actionName: "forceUpdate",
-//   color: "#342332",
-//   details: {
-//     payload: {
-//       action: {
-//         instantRender: true,
-//         type: "forceUpdate",
-//         data: [{ a: 1 }, { b: 2 }],
-//         payload: {
-//           forceUpdateFeatures: {},
-//         },
-//       },
-//     },
-//   },
-// };
+const isWebApp = !chrome.runtime;
 
 const getAction = (
   id,
@@ -202,19 +150,13 @@ export const mockData = {
   ],
 };
 
-// let id = 0;
-// const generateEventId = () => {
-//   id++;
-//   return id;
-// };
-
 const nestedQueue = [];
 const queueBuckedMap = new Map();
 
 const processedEventInfo = [];
 const eventDetailMap = new Map();
 
-const initStateProcessing = () => {
+const initWebAppEventProcessing = () => {
   let currentEventBucket = processedEventInfo;
   mockData.events.forEach((e) => {
     const newEventBucket = handleEvent(e, currentEventBucket);
@@ -255,7 +197,20 @@ const handleEvent = (event, currentEventBucket) => {
   }
 };
 
-initStateProcessing();
-console.log(processedEventInfo);
+const initDevToolEventProcessing = () => {
+  let currentEventBucket = processedEventInfo;
 
-export { processedEventInfo, eventDetailMap };
+  return function processEvent(event) {
+    const newEventBucket = handleEvent(event, currentEventBucket);
+    if (newEventBucket) {
+      currentEventBucket = newEventBucket;
+    }
+    return processedEventInfo;
+  };
+};
+
+const processEvent = isWebApp
+  ? initWebAppEventProcessing()
+  : initDevToolEventProcessing();
+
+export { processedEventInfo, eventDetailMap, processEvent };
